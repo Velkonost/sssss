@@ -1,15 +1,11 @@
+# Local environment files (do not commit secrets)
+.env
+.env.*
+
+# IDE settings
+.idea/
+.vscode/
+
 # Gradle
 .gradle/
-build/
 **/build/
-
-# IntelliJ
-.idea/
-*.iml
-
-# OS
-.DS_Store
-
-# Secrets
-**/resources/config.properties
-**/resources/config.properties.gpg

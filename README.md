@@ -26,3 +26,21 @@
 - Добавить базовые контроллеры и сервисы (индикаторы, статистика, решения)
 - Настроить интеграцию с Telegram и Binance
 - Обновлять README по мере развития
+
+## Безопасная настройка (Linux/JVM)
+
+- Никогда не коммитьте секреты. Используйте переменные окружения или секреты CI/CD.
+- Провайдер читает ключи из переменных окружения с префиксом `AIFB_`.
+- Пример переменных (см. `.env.example`):
+
+```bash
+export AIFB_BINANCE_API_KEY="..."
+export AIFB_BINANCE_API_SECRET="..."
+export AIFB_TELEGRAM_BOT_TOKEN="..."
+export AIFB_POSTGRES_URL="jdbc:postgresql://localhost:5432/aifb"
+export AIFB_POSTGRES_USER="..."
+export AIFB_POSTGRES_PASSWORD="..."
+```
+
+- В коде используйте `EnvSecureConfigProvider` из `core/configs`.
+- Проверка утечек: GitHub Actions запускает TruffleHog (workflow `Secrets Scan`).
