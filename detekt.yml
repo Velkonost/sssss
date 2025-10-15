@@ -1,0 +1,49 @@
+build:
+  maxIssues: 0
+  excludeCorrectable: false
+
+config:
+  validation: true
+
+processors:
+  active: true
+
+console-reports:
+  active: true
+  exclude:
+    - 'ProjectStatisticsReport'
+
+reports:
+  txt:
+    enabled: true
+    destination: detekt-report.txt
+  xml:
+    enabled: true
+    destination: detekt-report.xml
+  html:
+    enabled: true
+    destination: detekt-report.html
+
+style:
+  MagicNumber:
+    active: false
+  WildcardImport:
+    active: false
+  MaxLineLength:
+    active: true
+    maxLineLength: 140
+  UnusedImports:
+    active: true
+
+performance:
+  ForEachOnRange:
+    active: true
+
+complexity:
+  LongMethod:
+    active: true
+    threshold: 80
+  LargeClass:
+    active: true
+    threshold: 600
+

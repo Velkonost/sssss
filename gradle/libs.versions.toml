@@ -13,6 +13,7 @@ telegram-listener-sdk = "0.0.8"
 technical-analysis = "0.1.2"
 binance-sdk = "0.0.6"
 jupiter = "5.10.2"
+detekt = "1.23.6"
 
 [libraries]
 # self SDKs
@@ -54,6 +55,9 @@ slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4jJ" }
 # Gradle plugins
 gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle-kotlinx-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+
+# Detekt
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
 # Tests
 jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jupiter" }
