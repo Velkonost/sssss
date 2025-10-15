@@ -47,7 +47,6 @@ export AIFB_POSTGRES_PASSWORD="..."
 
 ## Security checks
 
-- CodeQL SAST: `.github/workflows/codeql.yml` (push/PR, weekly schedule)
 - Semgrep SAST: `.github/workflows/semgrep.yml` (push/PR). Configure `SEMGREP_APP_TOKEN` for uploads
 - Dependency Review: `.github/workflows/dependency-review.yml` (PR gate)
 - Secrets Scan: `.github/workflows/secrets-scan.yml` (push/PR)
