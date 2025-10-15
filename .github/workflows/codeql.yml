@@ -1,0 +1,11 @@
+name: CodeQL (disabled)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "CodeQL disabled for private repository."
+

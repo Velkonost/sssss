@@ -1,0 +1,11 @@
+name: ZAP DAST (Removed)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "ZAP DAST disabled: no public URL available."
+

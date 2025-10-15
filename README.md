@@ -44,3 +44,9 @@ export AIFB_POSTGRES_PASSWORD="..."
 
 - В коде используйте `EnvSecureConfigProvider` из `core/configs`.
 - Проверка утечек: GitHub Actions запускает TruffleHog (workflow `Secrets Scan`).
+
+## Security checks
+
+- Semgrep SAST: `.github/workflows/semgrep.yml` (push/PR). Configure `SEMGREP_APP_TOKEN` for uploads
+- Dependency Review: `.github/workflows/dependency-review.yml` (PR gate)
+- Secrets Scan: `.github/workflows/secrets-scan.yml` (push/PR)
