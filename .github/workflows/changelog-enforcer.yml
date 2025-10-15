@@ -1,0 +1,20 @@
+name: Changelog Enforcer
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  enforce:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check for CHANGELOG entry
+        uses: dangoslen/changelog-enforcer@v3
+        with:
+          changeLogPath: docs/CHANGELOG.md
+          skipLabels: no-changelog
+          token: ${{ secrets.GITHUB_TOKEN }}
+
