@@ -1,5 +1,8 @@
 # AIFuturesBot
 
+[![CI](https://github.com/velkonost/ai-bot/actions/workflows/ci.yml/badge.svg)](https://github.com/velkonost/ai-bot/actions/workflows/ci.yml)
+[![Release](https://github.com/velkonost/ai-bot/actions/workflows/release.yml/badge.svg)](https://github.com/velkonost/ai-bot/actions/workflows/release.yml)
+
 Новый улучшенный фьючерсный бот на основе опыта ml-futures-bot.
 
 ## Цели
