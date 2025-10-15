@@ -13,17 +13,6 @@ console-reports:
   exclude:
     - 'ProjectStatisticsReport'
 
-reports:
-  txt:
-    enabled: true
-    destination: detekt-report.txt
-  xml:
-    enabled: true
-    destination: detekt-report.xml
-  html:
-    enabled: true
-    destination: detekt-report.html
-
 style:
   MagicNumber:
     active: false
