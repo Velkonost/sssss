@@ -1,22 +1,11 @@
-name: ZAP DAST (Optional)
+name: ZAP DAST (Removed)
 
 on:
   workflow_dispatch:
-    inputs:
-      target_url:
-        description: 'Target URL to scan'
-        required: true
 
 jobs:
-  zap_scan:
+  noop:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
-      - name: ZAP Full Scan
-        uses: zaproxy/action-full-scan@v0.10.0
-        with:
-          target: ${{ github.event.inputs.target_url }}
-          allow_issue_writing: false
-          cmd_options: '-a'
+      - run: echo "ZAP DAST disabled: no public URL available."
 
