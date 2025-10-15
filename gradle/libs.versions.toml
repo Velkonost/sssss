@@ -1,0 +1,68 @@
+[versions]
+kotlin = "1.9.24"
+coroutines = "1.9.0"
+koin = "3.5.0"
+exposed = "0.54.0"
+postgres-driver = "42.7.2"
+sqlite-driver = "3.41.2.2"
+ktgbotapi = "9.3.0"
+ktor = "2.3.12"
+dataframe = "0.13.1"
+slf4jJ = "2.0.13"
+telegram-listener-sdk = "0.0.8"
+technical-analysis = "0.1.2"
+binance-sdk = "0.0.6"
+
+[libraries]
+# self SDKs
+telegram-listener-sdk = { group = "io.github.velkonost", name = "telegram-listener-sdk", version.ref = "telegram-listener-sdk" }
+technical-analysis = { group = "io.github.velkonost", name = "technical-analysis", version.ref = "technical-analysis" }
+binance-sdk = { group = "io.github.velkonost", name = "binance-sdk", version.ref = "binance-sdk" }
+
+# Kotlin/Coroutines
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+# Koin
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+
+# DataFrame
+dataframe = { module = "org.jetbrains.kotlinx:dataframe", version.ref = "dataframe" }
+
+# Exposed
+exposed-core = { group = "org.jetbrains.exposed", name = "exposed-core", version.ref = "exposed" }
+exposed-crypt = { group = "org.jetbrains.exposed", name = "exposed-crypt", version.ref = "exposed" }
+exposed-dao = { group = "org.jetbrains.exposed", name = "exposed-dao", version.ref = "exposed" }
+exposed-jdbc = { group = "org.jetbrains.exposed", name = "exposed-jdbc", version.ref = "exposed" }
+exposed-datetime = { group = "org.jetbrains.exposed", name = "exposed-kotlin-datetime", version.ref = "exposed" }
+
+# DB Drivers
+sqlite-driver = { group = "org.xerial", name = "sqlite-jdbc", version.ref = "sqlite-driver" }
+postgres-driver = { group = "org.postgresql", name = "postgresql", version.ref = "postgres-driver" }
+
+# Ktor client (при необходимости для SDK)
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-socket = { module = "io.ktor:ktor-client-websockets", version.ref = "ktor" }
+ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+
+# Logging
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4jJ" }
+
+# Gradle plugins
+gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+gradle-kotlinx-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+
+# Tests
+jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jupiter" }
+jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jupiter" }
+
+[bundles]
+exposed = [
+  "exposed-core",
+  "exposed-crypt",
+  "exposed-dao",
+  "exposed-jdbc",
+  "exposed-datetime"
+]
