@@ -1,7 +1,6 @@
 package velkonost.aifuturesbot.db.repositories
 
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.between
 import org.jetbrains.exposed.sql.transactions.transaction
 import velkonost.aifuturesbot.db.CandlesTable
 import java.math.BigDecimal
@@ -33,7 +32,7 @@ class CandlesRepository(private val db: Database) {
                 this[CandlesTable.low] = c.low
                 this[CandlesTable.close] = c.close
                 this[CandlesTable.volume] = c.volume
-                this[CandlesTable.source] = c.source
+                this[CandlesTable.dataSource] = c.source
             }
         }
     }
@@ -41,10 +40,12 @@ class CandlesRepository(private val db: Database) {
     fun findRange(symbol: String, interval: String, startOpenTime: Long, endOpenTime: Long): List<Candle> =
         transaction(db) {
             CandlesTable
-                .select {
+                .selectAll()
+                .where {
                     (CandlesTable.symbol eq symbol) and
                     (CandlesTable.interval eq interval) and
-                    (CandlesTable.openTime between startOpenTime..endOpenTime)
+                    (CandlesTable.openTime greaterEq startOpenTime) and
+                    (CandlesTable.openTime lessEq endOpenTime)
                 }
                 .orderBy(CandlesTable.openTime to SortOrder.ASC)
                 .map {
@@ -58,7 +59,7 @@ class CandlesRepository(private val db: Database) {
                         it[CandlesTable.low],
                         it[CandlesTable.close],
                         it[CandlesTable.volume],
-                        it[CandlesTable.source]
+                        it[CandlesTable.dataSource]
                     )
                 }
         }

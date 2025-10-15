@@ -9,6 +9,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: aifb
+          POSTGRES_USER: aifb
+          POSTGRES_PASSWORD: aifb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U aifb -d aifb" --health-interval 10s --health-timeout 5s --health-retries 5
     permissions:
       contents: read
     steps:
@@ -31,8 +42,15 @@ jobs:
       - name: Build (no tests for now)
         run: ./gradlew clean build -x test --no-daemon
 
-      - name: Run tests
-        run: ./gradlew test --no-daemon || true
+      - name: Run unit tests
+        run: ./gradlew test --no-daemon
+
+      - name: Run DB integration tests (features:db)
+        env:
+          AIFB_POSTGRES_URL: jdbc:postgresql://localhost:5432/aifb
+          AIFB_POSTGRES_USER: aifb
+          AIFB_POSTGRES_PASSWORD: aifb
+        run: ./gradlew :features:db:test --no-daemon
 
       - name: Run Detekt
         run: ./gradlew detekt --no-daemon || true

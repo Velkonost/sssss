@@ -33,7 +33,8 @@ class AggregatedSignalsRepository(private val db: Database) {
 
     fun latest(symbol: String, timeframe: String): Aggregated? = transaction(db) {
         AggregatedSignalsTable
-            .select { (AggregatedSignalsTable.symbol eq symbol) and (AggregatedSignalsTable.timeframe eq timeframe) }
+            .selectAll()
+            .where { (AggregatedSignalsTable.symbol eq symbol) and (AggregatedSignalsTable.timeframe eq timeframe) }
             .orderBy(AggregatedSignalsTable.windowEnd to SortOrder.DESC)
             .limit(1)
             .map {

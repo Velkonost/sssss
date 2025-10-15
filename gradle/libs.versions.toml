@@ -15,6 +15,7 @@ binance-sdk = "0.0.6"
 jupiter = "5.10.2"
 detekt = "1.23.6"
 hikari = "5.1.0"
+testcontainers = "1.20.3"
 
 [libraries]
 # self SDKs
@@ -66,6 +67,9 @@ hikari-cp = { group = "com.zaxxer", name = "HikariCP", version.ref = "hikari" }
 # Tests
 jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jupiter" }
 jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jupiter" }
+testcontainers-core = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
+testcontainers-junit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
+testcontainers-postgres = { group = "org.testcontainers", name = "postgresql", version.ref = "testcontainers" }
 
 [bundles]
 exposed = [

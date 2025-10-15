@@ -14,7 +14,10 @@ object DatabaseFactory {
         val jdbcUrl = provider.getRequired(SecretKeys.POSTGRES_URL)
         val user = provider.getRequired(SecretKeys.POSTGRES_USER)
         val password = provider.getRequired(SecretKeys.POSTGRES_PASSWORD)
+        return initWith(jdbcUrl, user, password, createSchema)
+    }
 
+    fun initWith(jdbcUrl: String, user: String, password: String, createSchema: Boolean = true): Database {
         val ds = HikariDataSource(hikari(jdbcUrl, user, password))
         val db = Database.connect(ds)
 
