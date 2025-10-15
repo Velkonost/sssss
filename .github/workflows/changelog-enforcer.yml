@@ -7,10 +7,14 @@ on:
 jobs:
   enforce:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       - name: Check for CHANGELOG entry
         uses: dangoslen/changelog-enforcer@v3
         with:
           changeLogPath: docs/CHANGELOG.md
-          skipLabel: no-changelog
+          skipLabels: no-changelog
+          token: ${{ secrets.GITHUB_TOKEN }}
 
