@@ -11,6 +11,7 @@ The format is based on Keep a Changelog and this project adheres to Semantic Ver
 - Detekt static analysis with CI integration.
 - Secure env provider (`EnvSecureConfigProvider`) and `.env` ignore.
 - Dependabot for `gradle` and `github-actions`.
+- Changelog (`docs/CHANGELOG.md`) and changelog enforcer workflow for PRs.
 
 ### Changed
 - Kotlin updated to 2.1.0, Coroutines to 1.10.2.
