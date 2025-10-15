@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.1.0"
 coroutines = "1.10.2"
-koin = "3.5.0"
+koin = "4.1.1"
 exposed = "0.54.0"
 postgres-driver = "42.7.8"
 sqlite-driver = "3.41.2.2"
