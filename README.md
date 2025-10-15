@@ -58,3 +58,16 @@ export AIFB_POSTGRES_PASSWORD="..."
 ## Changelog
 
 - См. `docs/CHANGELOG.md` для истории изменений.
+
+## PRs via GitHub CLI (gh)
+
+- Установка: `brew install gh`
+- Аутентификация (без интерктива):
+  - Создайте PAT с правами `repo` и экспортируйте: `export GH_TOKEN=...`
+  - Запустите: `./scripts/gh-auth.sh`
+- Создание PR:
+  ```bash
+  gh pr create --base main --head feature/your-branch \
+    --title "feat: short title" \
+    --body "Описание изменений"
+  ```
