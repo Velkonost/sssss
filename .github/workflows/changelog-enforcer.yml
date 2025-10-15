@@ -1,0 +1,16 @@
+name: Changelog Enforcer
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  enforce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for CHANGELOG entry
+        uses: dangoslen/changelog-enforcer@v3
+        with:
+          changeLogPath: docs/CHANGELOG.md
+          skipLabel: no-changelog
+

@@ -54,3 +54,7 @@ export AIFB_POSTGRES_PASSWORD="..."
 ## Linting / Static analysis
 
 - Detekt (Kotlin): локально `./gradlew detekt`, отчёты: `build/reports/detekt/`
+
+## Changelog
+
+- См. `docs/CHANGELOG.md` для истории изменений.
