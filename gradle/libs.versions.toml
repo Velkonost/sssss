@@ -12,6 +12,7 @@ slf4jJ = "2.0.13"
 telegram-listener-sdk = "0.0.8"
 technical-analysis = "0.1.2"
 binance-sdk = "0.0.6"
+jupiter = "5.10.2"
 
 [libraries]
 # self SDKs
