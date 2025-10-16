@@ -14,17 +14,7 @@ jobs:
       AIFB_POSTGRES_USER: ${{ secrets.AIFB_POSTGRES_USER }}
       AIFB_POSTGRES_PASSWORD: ${{ secrets.AIFB_POSTGRES_PASSWORD }}
       AIFB_POSTGRES_SSL_CERT_BASE64: ${{ secrets.AIFB_POSTGRES_SSL_CERT_BASE64 }}
-    services:
-      postgres:
-        image: postgres:16-alpine
-        env:
-          POSTGRES_DB: aifb
-          POSTGRES_USER: aifb
-          POSTGRES_PASSWORD: aifb
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U aifb -d aifb" --health-interval 10s --health-timeout 5s --health-retries 5
+    # Testcontainers is used for DB ITs; service postgres is not required
     permissions:
       contents: read
     steps:
@@ -53,23 +43,15 @@ jobs:
           mkdir -p configs/ssl
           echo "${{ env.AIFB_POSTGRES_SSL_CERT_BASE64 }}" | base64 -d > configs/ssl/yandex-cloud-root-ca.pem
 
-      - name: Run DB integration tests against secrets DB
-        if: ${{ env.AIFB_POSTGRES_URL != '' }}
+      - name: Run DB integration tests (Testcontainers)
         env:
+          TEST_USE_TC: "true"
+          # If secrets are provided, repositories can also use them when needed
           AIFB_POSTGRES_URL: ${{ env.AIFB_POSTGRES_URL }}
           AIFB_POSTGRES_USER: ${{ env.AIFB_POSTGRES_USER }}
           AIFB_POSTGRES_PASSWORD: ${{ env.AIFB_POSTGRES_PASSWORD }}
           AIFB_POSTGRES_SSL_CERT_PATH: configs/ssl/yandex-cloud-root-ca.pem
           AIFB_POSTGRES_SSL_MODE: verify-full
-        run: ./gradlew :features:db:test --no-daemon --stacktrace --info
-
-      - name: Run DB integration tests against local service
-        if: ${{ env.AIFB_POSTGRES_URL == '' }}
-        env:
-          AIFB_POSTGRES_URL: jdbc:postgresql://localhost:5432/aifb
-          AIFB_POSTGRES_USER: aifb
-          AIFB_POSTGRES_PASSWORD: aifb
-          AIFB_POSTGRES_SSL_MODE: disable
         run: ./gradlew :features:db:test --no-daemon --stacktrace --info
 
       - name: Run Detekt
