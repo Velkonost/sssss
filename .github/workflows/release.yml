@@ -27,8 +27,11 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Run tests
+        run: ./gradlew clean test --no-daemon
+
       - name: Build distributables
-        run: ./gradlew :app:clean :app:build :app:distZip :app:distTar --no-daemon
+        run: ./gradlew :app:build :app:distZip :app:distTar --no-daemon
 
       - name: Create GitHub Release
         id: create_release
