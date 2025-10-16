@@ -2,6 +2,12 @@
 .env
 .env.*
 
+# SSL certificates (keep placeholder files, ignore real certificates)
+configs/ssl/*.pem
+configs/ssl/*.crt
+configs/ssl/*.key
+!configs/ssl/ca-cert.pem
+
 # IDE settings
 .idea/
 .vscode/

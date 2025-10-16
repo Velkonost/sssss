@@ -23,16 +23,25 @@ class CandlesRepositoryIT {
         if (useTc) {
             container = PostgreSQLContainer<Nothing>("postgres:16-alpine").apply { start() }
             db = DatabaseFactory.initWith(
-                jdbcUrl = container!!.jdbcUrl,
-                user = container!!.username,
-                password = container!!.password,
-                createSchema = true
+                DatabaseConfig(
+                    jdbcUrl = container!!.jdbcUrl,
+                    user = container!!.username,
+                    password = container!!.password,
+                    createSchema = true
+                )
             )
         } else {
             val url = System.getenv("AIFB_POSTGRES_URL") ?: error("AIFB_POSTGRES_URL not set")
             val user = System.getenv("AIFB_POSTGRES_USER") ?: error("AIFB_POSTGRES_USER not set")
             val pass = System.getenv("AIFB_POSTGRES_PASSWORD") ?: error("AIFB_POSTGRES_PASSWORD not set")
-            db = DatabaseFactory.initWith(url, user, pass, createSchema = true)
+            db = DatabaseFactory.initWith(
+                DatabaseConfig(
+                    jdbcUrl = url,
+                    user = user,
+                    password = pass,
+                    createSchema = true
+                )
+            )
         }
         repo = CandlesRepository(db)
     }

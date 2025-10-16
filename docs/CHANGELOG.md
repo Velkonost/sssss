@@ -15,6 +15,8 @@ The format is based on Keep a Changelog and this project adheres to Semantic Ver
 - PostgreSQL storage layer with Exposed ORM and HikariCP connection pooling.
 - Database repositories for candles, signals, aggregated signals, analysis results, and audit logs.
 - Integration tests with Testcontainers PostgreSQL support.
+- SSL support for PostgreSQL connections with certificate-based authentication.
+- SSL configuration via environment variables (`AIFB_POSTGRES_SSL_CERT_PATH`, `AIFB_POSTGRES_SSL_MODE`).
 
 ### Changed
 - Kotlin updated to 2.1.0, Coroutines to 1.10.2.
