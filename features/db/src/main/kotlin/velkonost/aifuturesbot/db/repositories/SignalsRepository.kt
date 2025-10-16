@@ -2,8 +2,6 @@ package velkonost.aifuturesbot.db.repositories
 
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.greaterEq
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.lessEq
 import velkonost.aifuturesbot.db.SignalsTable
 import java.math.BigDecimal
 import java.time.Instant

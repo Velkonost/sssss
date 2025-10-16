@@ -5,16 +5,25 @@ import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 import velkonost.aifuturesbot.db.AuditLogsTable
 
+data class AuditLogEntry(
+    val eventType: String,
+    val refType: String,
+    val refId: Long?,
+    val level: String,
+    val message: String,
+    val metaJson: String
+)
+
 class AuditLogRepository(private val db: Database) {
-    fun log(eventType: String, refType: String, refId: Long?, level: String, message: String, metaJson: String) {
+    fun log(entry: AuditLogEntry) {
         transaction(db) {
             AuditLogsTable.insert {
-                it[AuditLogsTable.eventType] = eventType
-                it[AuditLogsTable.refType] = refType
-                it[AuditLogsTable.refId] = refId
-                it[AuditLogsTable.level] = level
-                it[AuditLogsTable.message] = message
-                it[AuditLogsTable.metaJson] = metaJson
+                it[AuditLogsTable.eventType] = entry.eventType
+                it[AuditLogsTable.refType] = entry.refType
+                it[AuditLogsTable.refId] = entry.refId
+                it[AuditLogsTable.level] = entry.level
+                it[AuditLogsTable.message] = entry.message
+                it[AuditLogsTable.metaJson] = entry.metaJson
             }
         }
     }

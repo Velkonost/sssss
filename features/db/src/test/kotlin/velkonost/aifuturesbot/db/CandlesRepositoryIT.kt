@@ -44,7 +44,7 @@ class CandlesRepositoryIT {
         repo = CandlesRepository(db)
     }
 
-    private fun trueForContainer(): Boolean = true
+    // removed unused constant-returning helper to satisfy detekt
 
     @AfterAll
     fun tearDown() {

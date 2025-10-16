@@ -36,7 +36,13 @@ class RepositoriesIntegrationTest {
 
     @Test
     fun insertAndReadCandles() {
-        val repo = CandlesRepository(org.jetbrains.exposed.sql.Database.connect(postgres.jdbcUrl, user = postgres.username, password = postgres.password))
+        val repo = CandlesRepository(
+            org.jetbrains.exposed.sql.Database.connect(
+                postgres.jdbcUrl,
+                user = postgres.username,
+                password = postgres.password
+            )
+        )
         repo.batchInsertIgnore(
             listOf(
                 CandlesRepository.Candle(

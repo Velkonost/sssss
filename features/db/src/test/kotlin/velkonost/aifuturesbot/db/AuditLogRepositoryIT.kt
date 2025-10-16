@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
+import velkonost.aifuturesbot.db.repositories.AuditLogEntry
 import velkonost.aifuturesbot.db.repositories.AuditLogRepository
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,12 +33,14 @@ class AuditLogRepositoryIT {
     fun writeAuditLog() {
         assertDoesNotThrow {
             repo.log(
-                eventType = "decision",
-                refType = "signal",
-                refId = 1L,
-                level = "INFO",
-                message = "Decision taken",
-                metaJson = "{}"
+                AuditLogEntry(
+                    eventType = "decision",
+                    refType = "signal",
+                    refId = 1L,
+                    level = "INFO",
+                    message = "Decision taken",
+                    metaJson = "{}"
+                )
             )
         }
     }
