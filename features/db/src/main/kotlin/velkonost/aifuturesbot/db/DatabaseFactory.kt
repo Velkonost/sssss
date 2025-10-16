@@ -5,9 +5,11 @@ import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
-import velkonost.aifuturesbot.configs.EnvSecureConfigProvider
+import velkonost.aifuturesbot.configs.FileFirstSecureConfigProvider
 import velkonost.aifuturesbot.configs.SecretKeys
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 
 /**
  * Database configuration for connection setup
@@ -23,7 +25,7 @@ data class DatabaseConfig(
 
 object DatabaseFactory {
     fun init(createSchema: Boolean = true): Database {
-        val provider = EnvSecureConfigProvider()
+        val provider = FileFirstSecureConfigProvider()
         val config = DatabaseConfig(
             jdbcUrl = provider.getRequired(SecretKeys.POSTGRES_URL),
             user = provider.getRequired(SecretKeys.POSTGRES_USER),
@@ -67,12 +69,33 @@ object DatabaseFactory {
             addDataSourceProperty("sslmode", config.sslMode)
         }
         
-        if (config.sslCertPath != null && File(config.sslCertPath).exists()) {
-            addDataSourceProperty("sslcert", config.sslCertPath)
-            addDataSourceProperty("sslrootcert", config.sslCertPath)
+        resolveSslCertPath(config.sslCertPath)?.let { certPath ->
+            addDataSourceProperty("sslrootcert", certPath)
         }
         
         validate()
+    }
+
+    private fun resolveSslCertPath(rawPath: String?): String? {
+        if (rawPath.isNullOrBlank()) return null
+        return if (rawPath.startsWith("classpath:")) {
+            val resourceName = rawPath.removePrefix("classpath:")
+            resolveClasspathCert(resourceName)
+        } else {
+            resolveFileCert(rawPath)
+        }
+    }
+
+    private fun resolveClasspathCert(resourceName: String): String? {
+        val stream = this::class.java.classLoader.getResourceAsStream(resourceName) ?: return null
+        val temp = Files.createTempFile("aifb-ca-", ".pem").toFile().apply { deleteOnExit() }
+        stream.use { Files.copy(it, temp.toPath(), StandardCopyOption.REPLACE_EXISTING) }
+        return temp.absolutePath
+    }
+
+    private fun resolveFileCert(path: String): String? {
+        val file = File(path)
+        return if (file.exists()) file.absolutePath else null
     }
 }
 

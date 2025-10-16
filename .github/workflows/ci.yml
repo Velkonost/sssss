@@ -45,11 +45,19 @@ jobs:
       - name: Run unit tests
         run: ./gradlew test --no-daemon
 
+      - name: Prepare SSL certificate (if provided)
+        if: ${{ secrets.AIFB_POSTGRES_SSL_CERT_BASE64 != '' }}
+        run: |
+          mkdir -p configs/ssl
+          echo "${{ secrets.AIFB_POSTGRES_SSL_CERT_BASE64 }}" | base64 -d > configs/ssl/yandex-cloud-root-ca.pem
+      
       - name: Run DB integration tests (features:db)
         env:
-          AIFB_POSTGRES_URL: jdbc:postgresql://localhost:5432/aifb
-          AIFB_POSTGRES_USER: aifb
-          AIFB_POSTGRES_PASSWORD: aifb
+          AIFB_POSTGRES_URL: ${{ secrets.AIFB_POSTGRES_URL }}
+          AIFB_POSTGRES_USER: ${{ secrets.AIFB_POSTGRES_USER }}
+          AIFB_POSTGRES_PASSWORD: ${{ secrets.AIFB_POSTGRES_PASSWORD }}
+          AIFB_POSTGRES_SSL_CERT_PATH: configs/ssl/yandex-cloud-root-ca.pem
+          AIFB_POSTGRES_SSL_MODE: verify-full
         run: ./gradlew :features:db:test --no-daemon
 
       - name: Run Detekt
