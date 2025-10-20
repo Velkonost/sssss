@@ -16,12 +16,20 @@ jupiter = "6.0.0"
 detekt = "1.23.6"
 hikari = "5.1.0"
 testcontainers = "1.20.3"
+kotlinx-serialization = "1.7.1"
 
 [libraries]
 # self SDKs
 telegram-listener-sdk = { group = "io.github.velkonost", name = "telegram-listener-sdk", version.ref = "telegram-listener-sdk" }
 technical-analysis = { group = "io.github.velkonost", name = "technical-analysis", version.ref = "technical-analysis" }
 binance-sdk = { group = "io.github.velkonost", name = "binance-sdk", version.ref = "binance-sdk" }
+
+# Kotlinx Serialization
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+# Validation
+hibernate-validator = { group = "org.hibernate.validator", name = "hibernate-validator", version = "8.0.1.Final" }
+jakarta-el = { group = "org.glassfish", name = "jakarta.el", version = "4.0.2" }
 
 # Kotlin/Coroutines
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }

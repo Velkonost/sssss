@@ -21,6 +21,7 @@ include(
     ":core:configs",
     ":core:network",
     ":features:db",
+    ":features:data-schemas",
     ":features:logger",
     ":features:tg-sender",
     ":features:incoming-signals",

@@ -17,6 +17,13 @@ The format is based on Keep a Changelog and this project adheres to Semantic Ver
 - Integration tests with Testcontainers PostgreSQL support.
 - SSL support for PostgreSQL connections with certificate-based authentication.
 - SSL configuration via environment variables (`AIFB_POSTGRES_SSL_CERT_PATH`, `AIFB_POSTGRES_SSL_MODE`).
+- Data schemas module (`features:data-schemas`) with comprehensive data validation.
+- Typed data schemas for candles, signals, aggregated signals, analysis results, and audit logs.
+- Domain event schemas for inter-module communication (MarketDataReceivedEvent, SignalReceivedEvent, etc.).
+- DataValidator with standard validation, detailed validation, batch validation, and custom rules.
+- Contract tests for schema compatibility and inter-module integration.
+- JSON serialization/deserialization support with Kotlinx Serialization.
+- Bean Validation integration with Jakarta Validation annotations.
 
 ### Changed
 - Kotlin updated to 2.1.0, Coroutines to 1.10.2.

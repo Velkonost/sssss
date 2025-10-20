@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version libs.versions.kotlin
+    kotlin("plugin.serialization") version libs.versions.kotlin apply false
     id("io.gitlab.arturbosch.detekt") version libs.versions.detekt apply false
 }
 
