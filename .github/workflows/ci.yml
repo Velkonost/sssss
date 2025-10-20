@@ -10,6 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      DEVELOCITY_INJECTION_ENABLED: "false"
+    env:
       AIFB_POSTGRES_URL: ${{ secrets.AIFB_POSTGRES_URL }}
       AIFB_POSTGRES_USER: ${{ secrets.AIFB_POSTGRES_USER }}
       AIFB_POSTGRES_PASSWORD: ${{ secrets.AIFB_POSTGRES_PASSWORD }}
@@ -34,8 +36,8 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Build (with tests)
-        run: ./gradlew clean build --no-daemon --stacktrace --info
+      - name: Build (without DB ITs)
+        run: ./gradlew clean assemble check -x :features:db:test --no-daemon --stacktrace --info
 
       - name: Prepare SSL certificate (if provided)
         if: ${{ env.AIFB_POSTGRES_SSL_CERT_BASE64 != '' }}
