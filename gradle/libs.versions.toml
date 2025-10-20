@@ -28,7 +28,7 @@ binance-sdk = { group = "io.github.velkonost", name = "binance-sdk", version.ref
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 # Validation
-hibernate-validator = { group = "org.hibernate.validator", name = "hibernate-validator", version = "8.0.1.Final" }
+hibernate-validator = { group = "org.hibernate.validator", name = "hibernate-validator", version = "9.0.1.Final" }
 jakarta-el = { group = "org.glassfish", name = "jakarta.el", version = "4.0.2" }
 
 # Kotlin/Coroutines
