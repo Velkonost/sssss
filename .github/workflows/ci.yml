@@ -55,6 +55,10 @@ jobs:
           TEST_USE_TC: "true"
           # Ensure SSL is disabled for local Testcontainers database
           AIFB_POSTGRES_SSL_MODE: disable
+          # Force ignoring remote DB secrets during ITs
+          AIFB_POSTGRES_URL: ""
+          AIFB_POSTGRES_USER: ""
+          AIFB_POSTGRES_PASSWORD: ""
         run: ./gradlew :features:db:test --no-daemon --stacktrace --info
 
       - name: Run Detekt
