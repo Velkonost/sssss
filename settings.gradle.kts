@@ -3,6 +3,16 @@ plugins {
     id("com.gradle.develocity") version "3.17.6"
 }
 
+develocity {
+    buildScan {
+        // Disable publishing build scans to avoid Terms of Use prompts in CI
+        publishing.onlyIf { false }
+        // Provide defaults to avoid accidental prompts in dev too
+        termsOfUseUrl = "https://gradle.com/terms-of-service"
+        termsOfUseAgree = "yes"
+    }
+}
+
 rootProject.name = "ai-bot"
 
 include(
