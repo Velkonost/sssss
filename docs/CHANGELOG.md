@@ -24,6 +24,14 @@ The format is based on Keep a Changelog and this project adheres to Semantic Ver
 - Contract tests for schema compatibility and inter-module integration.
 - JSON serialization/deserialization support with Kotlinx Serialization.
 - Bean Validation integration with Jakarta Validation annotations.
+- Data retention module (`features:data-retention`) with TTL policies and archiving.
+- Retention policies for raw and aggregated data with configurable hot/warm/cold tiers.
+- FileSystemArchiveService with GZIP compression support.
+- DatabaseCleanupService for automated data cleanup and archiving.
+- RetentionScheduler for scheduled cleanup tasks with cron support.
+- RetentionMonitoringService for metrics and storage usage tracking.
+- RetentionService as a unified facade for retention operations.
+- Comprehensive retention configuration with validation.
 
 ### Changed
 - Kotlin updated to 2.1.0, Coroutines to 1.10.2.

@@ -22,6 +22,7 @@ include(
     ":core:network",
     ":features:db",
     ":features:data-schemas",
+    ":features:data-retention",
     ":features:logger",
     ":features:tg-sender",
     ":features:incoming-signals",
