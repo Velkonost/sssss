@@ -2,12 +2,14 @@ package velkonost.aifuturesbot.db
 
 import org.jetbrains.exposed.sql.Database
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.Assertions.assertTrue
 import velkonost.aifuturesbot.db.repositories.AnalysisResultsRepository
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Disabled("Requires Testcontainers or external PostgreSQL")
 class AnalysisResultsRepositoryIT {
 
     private lateinit var db: Database

@@ -3,12 +3,14 @@ package velkonost.aifuturesbot.db
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.utility.DockerImageName
 import velkonost.aifuturesbot.db.repositories.CandlesRepository
 import java.math.BigDecimal
 
+@Disabled("Requires Testcontainers or external PostgreSQL")
 class RepositoriesIntegrationTest {
     companion object {
         private val postgres = PostgreSQLContainer(DockerImageName.parse("postgres:15-alpine"))

@@ -2,6 +2,7 @@ package velkonost.aifuturesbot.db
 
 import org.jetbrains.exposed.sql.Database
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
@@ -9,6 +10,7 @@ import velkonost.aifuturesbot.db.repositories.AuditLogEntry
 import velkonost.aifuturesbot.db.repositories.AuditLogRepository
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Disabled("Requires Testcontainers or external PostgreSQL")
 class AuditLogRepositoryIT {
 
     private lateinit var db: Database

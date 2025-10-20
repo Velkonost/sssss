@@ -5,12 +5,14 @@ import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.TestInstance
 import org.testcontainers.containers.PostgreSQLContainer
 import velkonost.aifuturesbot.db.repositories.CandlesRepository
 import java.math.BigDecimal
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Disabled("Requires Testcontainers or external PostgreSQL")
 class CandlesRepositoryIT {
 
     private var container: PostgreSQLContainer<Nothing>? = null
