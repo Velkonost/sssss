@@ -34,6 +34,8 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+        with:
+          develocity-injection: false
 
       - name: Build (without DB ITs)
         run: ./gradlew clean assemble check -x :features:db:test --no-daemon --stacktrace --info
