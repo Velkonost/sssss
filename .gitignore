@@ -2,6 +2,13 @@
 .env
 .env.*
 
+# SSL certificates (keep placeholder files, ignore real certificates)
+configs/ssl/*.pem
+configs/ssl/*.crt
+configs/ssl/*.key
+!configs/ssl/ca-cert.pem
+!configs/ssl/yandex-cloud-root-ca.pem
+
 # IDE settings
 .idea/
 .vscode/
@@ -9,3 +16,6 @@
 # Gradle
 .gradle/
 **/build/
+ 
+# Local DB credentials (do not commit)
+configs/db/credentials.properties

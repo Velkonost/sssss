@@ -50,6 +50,10 @@ object SecretKeys {
     const val POSTGRES_URL = "POSTGRES_URL" // e.g. jdbc:postgresql://host:5432/db
     const val POSTGRES_USER = "POSTGRES_USER"
     const val POSTGRES_PASSWORD = "POSTGRES_PASSWORD"
+    
+    // SSL configuration for PostgreSQL
+    const val POSTGRES_SSL_CERT_PATH = "POSTGRES_SSL_CERT_PATH" // Path to SSL certificate file
+    const val POSTGRES_SSL_MODE = "POSTGRES_SSL_MODE" // SSL mode: verify-full, require, etc.
 }
 
 

@@ -1,11 +1,22 @@
-name: ZAP DAST (Removed)
+name: ZAP DAST
 
 on:
   workflow_dispatch:
+    inputs:
+      target_url:
+        description: 'Target URL to scan'
+        required: true
+
+permissions:
+  contents: read
 
 jobs:
-  noop:
+  zap:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "ZAP DAST disabled: no public URL available."
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.11.0
+        with:
+          target: ${{ inputs.target_url }}
+        continue-on-error: true
 

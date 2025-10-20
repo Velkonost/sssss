@@ -9,6 +9,7 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:configs"))
     implementation(project(":core:network"))
+    implementation(project(":features:db"))
 
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.koin.core)

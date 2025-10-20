@@ -1,11 +1,36 @@
-name: CodeQL (disabled)
+name: CodeQL
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main, 'feature/**' ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  security-events: write
 
 jobs:
-  noop:
+  analyze:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "CodeQL disabled for private repository."
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: 'java-kotlin'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Build
+        run: ./gradlew build -x test --no-daemon || true
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
 

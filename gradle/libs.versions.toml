@@ -14,6 +14,8 @@ technical-analysis = "0.1.2"
 binance-sdk = "0.0.6"
 jupiter = "6.0.0"
 detekt = "1.23.6"
+hikari = "5.1.0"
+testcontainers = "1.20.3"
 
 [libraries]
 # self SDKs
@@ -59,9 +61,15 @@ gradle-kotlinx-serialization = { module = "org.jetbrains.kotlin:kotlin-serializa
 # Detekt
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
+# DB Pool
+hikari-cp = { group = "com.zaxxer", name = "HikariCP", version.ref = "hikari" }
+
 # Tests
 jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jupiter" }
 jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jupiter" }
+testcontainers-core = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
+testcontainers-junit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
+testcontainers-postgres = { group = "org.testcontainers", name = "postgresql", version.ref = "testcontainers" }
 
 [bundles]
 exposed = [
