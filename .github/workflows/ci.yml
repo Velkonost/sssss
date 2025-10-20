@@ -42,7 +42,13 @@ jobs:
         if: ${{ env.AIFB_POSTGRES_SSL_CERT_BASE64 != '' }}
         run: |
           mkdir -p configs/ssl
-          echo "${{ env.AIFB_POSTGRES_SSL_CERT_BASE64 }}" | base64 -d > configs/ssl/yandex-cloud-root-ca.pem
+          # Try to decode as base64; if it fails, treat input as raw PEM
+          if echo "${{ env.AIFB_POSTGRES_SSL_CERT_BASE64 }}" | base64 -d > configs/ssl/yandex-cloud-root-ca.pem 2>/dev/null; then
+            echo "Decoded base64 SSL cert to configs/ssl/yandex-cloud-root-ca.pem"
+          else
+            printf "%s" "${{ env.AIFB_POSTGRES_SSL_CERT_BASE64 }}" > configs/ssl/yandex-cloud-root-ca.pem
+            echo "Wrote raw PEM SSL cert to configs/ssl/yandex-cloud-root-ca.pem"
+          fi
 
       - name: Run DB integration tests (Testcontainers)
         env:
