@@ -46,12 +46,8 @@ jobs:
       - name: Run DB integration tests (Testcontainers)
         env:
           TEST_USE_TC: "true"
-          # If secrets are provided, repositories can also use them when needed
-          AIFB_POSTGRES_URL: ${{ env.AIFB_POSTGRES_URL }}
-          AIFB_POSTGRES_USER: ${{ env.AIFB_POSTGRES_USER }}
-          AIFB_POSTGRES_PASSWORD: ${{ env.AIFB_POSTGRES_PASSWORD }}
-          AIFB_POSTGRES_SSL_CERT_PATH: configs/ssl/yandex-cloud-root-ca.pem
-          AIFB_POSTGRES_SSL_MODE: verify-full
+          # Ensure SSL is disabled for local Testcontainers database
+          AIFB_POSTGRES_SSL_MODE: disable
         run: ./gradlew :features:db:test --no-daemon --stacktrace --info
 
       - name: Run Detekt
